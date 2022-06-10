@@ -1,0 +1,131 @@
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <a style="font-size: 2rem;font-weight: bold;padding:0;margin:0;" href="<?php
+
+use Module\SanPham\Model\sanpham;
+$sp = new sanpham();
+echo URL ?>SanPham"
+                        class="page-title">Quản Lý Sản Phẩm</a>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item active">Danh Sách Sản Phẩm</li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <?php
+                            echo $sp->btnTrash();
+                        ?>
+                    </div>
+                    <div class="col-auto">
+                        <?php 
+                            echo $sp->btnXemLoai();
+                        ?>
+                    </div>
+                    <div class="col-auto">
+                        <?php 
+                            echo $sp->btnThem();
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- Search Filter -->
+
+        <!-- /Search Filter -->
+        <div class="row">
+            <div class="col-sm-12 ">
+                <form action="" method="POST">
+                    <div style="padding:0;" class="align-items-center col-sm-12 d-flex justify-content-between mb-1">
+                        <input class="form-control" name="action" value="/index" type="hidden">
+                        <input class="search-bar col-sm-10" style=" position: relative;
+                                border-radius: 0.2rem;
+                                width:90%;
+                                height:40px;
+                                transition: .3s ease-in;
+                                padding-left:1rem;
+                                color:#000;
+                            " placeholder="Tìm Kiếm..." type="text" style="font-size: 3rem;
+                                position: absolute;
+                            " name="keyword"
+                            value="<?php echo isset($_POST["keyword"]) ? \Model\Common::TextInput($_POST["keyword"]) : "" ?>">
+                        <!-- <input class="form-control" name="controller" value="QuanLyQuyen" type="hidden"> -->
+                        <button   style="float:right;font-size: 1.2rem;"
+                            class="col-auto btn btn-primary d-flex align-items-center" id="search">
+                            TÌm Kiếm
+                            <i style="cursor: pointer;margin-left:0.8rem" class="fa fa-search"></i>
+                        </button>
+
+                    </div>
+                    <script>
+                    $(document).ready(function() {
+                        $('#search').click(function() {
+                            $('.search-bar').show();
+                            $('#search').hide();
+                        })
+
+                    })
+                    </script>
+                </form>
+                <?php
+                    \Model\FormCommon::Select("", "", [10, 20, 50, 100],
+                            [
+                                "style" => "max-width:200px;",
+                                "class" => "form-control",
+                                "value" => $pageNumber,
+                                "onchange" => "SoDongHienThi(this.value)",
+                            ]
+                    )->render();
+                    ?>  
+                <div style="margin-top:1.6rem" class="card card-table">
+                    <div class="card-body">
+                        <div class="table-responsive" id="product_list">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Quyền</th>
+                                        <th>Mô Tả</th>
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+if (isset($dataSanPham) && !empty($dataSanPham)) {
+    foreach ($dataSanPham as $item) {
+        $sp = new sanpham($item);
+        if($sp->is_show !== "-1"){
+        ?>
+                                    <tr>
+                                        <td><?=$item->id?></td>
+                                        <td><?=$item->name?></td>
+                                        <td><?=$item->des?></td>
+                                        <td class="text-right">
+                                            <?php 
+                                                echo $sp->btnSua();
+                                                echo $sp->btnXoa();
+                                            ?>
+                                        </td>
+                                    </tr>
+                                    <?php }
+    }
+}
+?>
+                                </tbody>
+                            </table>
+                            <div class="box-footer" >
+                <div style="padding:0.6rem 0;font-size: 1.4rem;" class="d-flex align-items-center justify-content-center col-sm-12">
+                    <?php
+                    $linkPhanTrang = URL."SanPham/index/?keyword={$params["keyword"]}&indexPage=[i]&pageNumber={$pageNumber}";
+                    echo \Model\Common::PhanTrang($total, $indexPage, $pageNumber, $linkPhanTrang);
+                    ?> 
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

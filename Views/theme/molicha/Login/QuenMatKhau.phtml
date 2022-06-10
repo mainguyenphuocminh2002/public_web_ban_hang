@@ -1,0 +1,26 @@
+<?php
+$error = \Model\Error::GetError();
+if ($error != null) {
+?>
+  <div class="system-alert alert alert-<?php echo $error["Type"]; ?> alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?php echo $error["Content"]; ?>
+  </div>
+<?php
+}
+?>
+<div class="loginbox">
+  <div class="login-right" style="display:block">
+    <div class="login-right-wrap">
+      <h1>Quên Mật Khẩu</h1>
+    </div>
+    <form action="" method="POST">
+      <div class="form-group">
+        <label class="form-control-label">Email</label>
+        <input type="email" required placeholder="Vui Lòng Nhập Email..." class="form-control" name="email" require>
+      </div>
+      <button class="btn btn-lg btn-block btn-primary" type="submit" name="quenmatkhau">Quên Mật Khẩu</button>
+    </form>
+  </div>
+</div>
+</div>

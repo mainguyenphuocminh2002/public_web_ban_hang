@@ -1,0 +1,30 @@
+<?php
+$error = \Model\Error::GetError();
+if ($error != null) {
+?>
+  <div class="system-alert alert alert-<?php echo $error["Type"]; ?> alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?php echo $error["Content"]; ?>
+  </div>
+<?php
+}
+?>
+<div class="loginbox">
+  <div class="login-right" style="display:block">
+    <div class="login-right-wrap">
+      <h1>Quên Mật Khẩu</h1>
+    </div>
+    <form action="" method="POST">
+      <div class="form-group">
+        <label class="form-control-label">Mật Khẩu Mới</label>
+        <input type="password" placeholder="Vui Lòng Nhập Mật Khẩu Mới" class="form-control" name="password" require>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Nhập Lại Mật Khẩu Mới</label>
+        <input type="password" placeholder="Vui Lòng Nhập Lại Mật Khẩu Mới" class="form-control" name="rePassword" require>
+      </div>
+      <button class="btn btn-lg btn-block btn-primary" type="submit" name="recovery">Quên Mật Khẩu</button>
+    </form>
+  </div>
+</div>
+</div>

@@ -1,0 +1,105 @@
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <a style="font-size: 2rem;font-weight: bold;padding:0;margin:0;" href="<?php
+
+use Model\Role;
+use Model\UserRole;
+
+echo URL ?>QuanlyUser"
+                        class="page-title">Quản Lý Thành Viên</a>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item active">Danh Sách Thành Viên</li>
+                    </ul>
+                </div>
+                <div class="col-auto">
+                <a class="btn btn-primary" href="<?=URL;?>QuanLyUser/post"><i style="margin-right: 0.4rem ;" class="fas fa-user-plus"></i><span>Tạo thành viên
+                                mới</span></a>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+
+        <!-- Search Filter -->
+
+        <!-- /Search Filter -->
+        <div class="row">
+            <div class="col-sm-12 ">
+                <form action="" method="POST">
+                    <div class="align-items-center col-sm-12 d-flex justify-content-between mb-1">
+                        <input class="form-control" name="action" value="/index" type="hidden">
+                        <input class="search-bar col-sm-10" style=" position: relative;
+                                border-radius: 0.2rem;
+                                width:90%;
+                                height:40px;
+                                transition: .3s ease-in;
+                                padding-left:1rem;
+                                color:#000;
+                        " placeholder="Tìm Kiếm..." type="text" style="font-size: 3rem;
+                                position: absolute;
+                        " name="keyword"
+                            value="<?php echo isset($_POST["keyword"]) ? \Model\Common::TextInput($_POST["keyword"]) : "" ?>">
+                        <!-- <input class="form-control" name="controller" value="QuanLyQuyen" type="hidden"> -->
+                        <button   style="float:right;font-size: 1.2rem;"
+                            class="col-auto btn btn-primary d-flex align-items-center" id="search">
+                            TÌm Kiếm
+                            <i style="cursor: pointer;margin-left:0.8rem" class="fa fa-search"></i>
+                        </button>
+
+                    </div>
+                </form>
+                <div style="margin-top:1.6rem" class="card card-table">
+                    <div class="card-body">
+                        <div class="table-responsive" id="product_list">
+                            <table class="table table-center table-hover datatable">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Thành Viên</th>
+                                        <th>Họ Và Tên</th>
+                                        <th>Giới Tính</th>
+                                        <th>Ngày Sinh</th>
+                                        <th>Quyền</th>
+                                        <th class="text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+if (isset($User) && !empty($User)) {
+    $userrole = new UserRole();
+    foreach ($User as $item) {
+        ?>
+                                    <tr>
+                                        <td><?=$item->id?></td>
+                                        <td><?=$item->username?></td>
+                                        <td><?=$item->fullname?></td>
+                                        <td><?= ($item->gender == 1) ? "Nữ" : "Nam" ?></td>
+                                        <td><?=$item->birthday?></td>
+                                        <td><?= isset($userrole->GetByUserId($item->id)->role_name) ? $userrole->GetByUserId($item->id)->role_name : null?></td>
+                                        <td class="text-right">
+                                            <a href="<?=URL?>QuanLyUser/put/?id=<?=$item->id;?>"
+                                                class="btn btn-sm btn-white text-success mr-2"><i
+                                                    class="far fa-edit mr-1"></i>Sửa</a>
+                                                    <a href="<?=URL?>QuanLyUser/delete/?id=<?=$item->id;?>"
+                                                class="btn btn-sm btn-white text-danger mr-2"><i
+                                                    class="fa fa-trash mr-1"></i>Xoá</a>
+                                        </td>
+                                    </tr>
+                                    <?php }
+}
+?>
+                                </tbody>
+                            </table>
+                            <div class="box-footer">
+                                <div style="padding:0.6rem 0;font-size: 1.4rem;" class="d-flex align-items-center justify-content-center col-sm-12">
+                                    <?php
+                                    $linkPhanTrang = URL . "QuanLyUser/index/?keyword={$params["keyword"]}&indexPage=[i]&pageNumber={$pageNumber}";
+                                    echo \Model\Common::PhanTrang($total, $indexPage, $pageNumber, $linkPhanTrang);
+                                    ?>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

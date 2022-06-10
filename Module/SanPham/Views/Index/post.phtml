@@ -1,0 +1,173 @@
+<ol class="breadcrumb">
+    <li><a href="<?= URL ?>SanPham/index">Home /</a></li>
+    <li><a href="<?= URL ?>SanPham/index"> Danh Sách Sản Phẩm /</a></li>
+    <li> Thêm </li>
+</ol>
+<?php
+
+use Model\Common;
+use Module\SanPham\Model\sanpham;
+use Module\SanPham\Model\SanPham\FormSanPham;
+
+$sanpham = new sanpham();
+?>
+<div class="container-fluid">
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Thêm Sản Phẩm</h3>
+            <div class="box-tools">
+                <!--<a href="#" class="btn btn-success" ><i class="fa fa-plus" ></i></a>-->
+            </div>
+        </div>
+        <div class="box-body">
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col-md-5">
+                        <?php
+                        FormSanPham::id(Common::uuid())->render();
+                        FormSanPham::name()->renderHTML();
+                        FormSanPham::code()->renderHTML();
+                        FormSanPham::is_show()->renderHTML();
+                        ?>
+
+                        <div class="row">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <?php
+                                FormSanPham::price()->renderHTML();
+                                ?>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <?php
+                                FormSanPham::sale_off()->renderHTML();
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                        FormSanPham::view()->renderHTML();
+                        ?>
+                    </div>
+                    <div class="col-md-7">
+                        <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="nav-item active">
+                                    <a class="nav-link" href="#thumbnail" target="_self" aria-controls="thumbnail" role="tab" data-toggle="tab">Thumbnail</a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#SEO" target="_self" aria-controls="keyword" role="tab" data-toggle="tab">SEO</a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#des" target="_self" aria-controls="des" role="tab" data-toggle="tab">Mô
+                                        Tả</a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#category" target="_self" aria-controls="category" role="tab" data-toggle="tab">
+                                        Loại Sản Phẩm</a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#trangthai" target="_self" aria-controls="trangthai" role="tab" data-toggle="tab">
+                                        Trạng Thái</a>
+                                </li>
+                                <li role="presentation" class="nav-item">
+                                    <a class="nav-link" href="#Toping" target="_self" aria-controls="Toping" role="tab" data-toggle="tab">
+                                        Toping</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="thumbnail">
+                                <img src="/public/admin/img/no-image.jpg" width="200px" height="200px" id="thumbnailImg" alt="">
+                                    <input onchange="BrowseServer('thumbnailInput','thumbnailImg')" name="image" id="thumbnailInput" type="file" class="from-control">
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="SEO">
+                                    <?php
+                                    FormSanPham::key_word()->renderHTML()
+                                    ?>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="category">
+                                    <div id="formCategory"  style="padding: 0;" class="col-sm-12 d-flex flex-column">
+                                        <div class="w-100">
+                                            <div style="margin-left: 20px;" data-url="<?php echo URL ?>SanPham/api/CreateLoaiChung" class="form-group float-right btn btn-primary" id="AddLoaiChung">
+                                                Thêm Loại Chung
+                                            </div>
+                                            <div data-url="<?php echo URL ?>SanPham/api/GetDataCreateLoai" class="form-group float-right btn btn-primary" id="categoryAdd">
+                                                Thêm Loại Chi Tiết
+                                            </div>
+                                            <div style="margin-right: 20px;" data-url="<?php echo URL ?>SanPham/api/GetCreateProductChiTiet" data-target="boxProductDetailCategory" class="form-group float-right btn btn-primary" id="categoryProductAdd">
+                                                Thêm Loại Sản Phẩm Chi Tiết
+                                            </div>
+                                        </div>
+                                        <div id="boxAddCategoryChung" class="w-100"></div>
+                                        <div id="boxAddCategoryChiTiet" class="w-100"></div>
+                                        <div class="w-100 d-flex flex-column">
+                                            <div class="d-flex flex-column">
+                                                <div id="boxProductDetailCategory"></div>
+                                                <div class="col-md-6 text-center">Tên Loại Chi Tiết</div>
+                                            </div>
+                                            <div id="cardItemCategory" class="w-100 d-flex justify-content-start flex-wrap">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="des">
+                                    <?php
+                                    FormSanPham::des()->renderHTML();
+                                    ?>
+
+                                </div>
+                                <div id="Toping" role="tabpanel" style="padding: 0;" class="tab-pane"><br>
+                                    <div id="formToping" style="padding: 0;" class="col-sm-12 d-flex flex-column">
+        
+                                    <div class="w-100 row justify-content-between align-items-center">
+                                            <p style="font-size: 18px;" class="text-center">Danh Sách Toping</p>
+                                            <div data-url="<?php echo URL ?>SanPham/api/GetDataCreateToping" data-target="cardItemToping" class="form-group float-right btn btn-primary" id="AddToping">
+                                                Thêm Toping
+                                            </div>
+
+                                        </div>
+                                        <div id="cardItemToping" style="overflow-y: scroll;max-height: 300px;" class="w-100">
+                                            <div id="boxAddToping" class="w-100 form-group"></div>
+                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="trangthai" role="tabpanel" style="padding: 0;" class="tab-pane"><br>
+                                    <div id="formTrangThai" style="padding: 0;" class="col-sm-12 d-flex flex-column">
+                                        <div class="w-100">
+                                            <div style="margin-left: 20px;" data-url="<?php echo URL ?>SanPham/api/CreateTrangThaiChung" class="form-group float-right btn btn-primary" id="AddTrangThaiChung">
+                                                Thêm Trạng Thái Chung
+                                            </div>
+                                            <div data-url="<?php echo URL ?>SanPham/api/GetDataCreateTrangThai" data-target="cardItemTrangThai" class="form-group float-right btn btn-primary" id="trangthaiAdd">
+                                                Thêm Trạng Thái Chi Tiết
+                                            </div>
+                                        </div>
+                                        <div id="cardItemTrangThai" style="overflow-y: scroll;max-height: 300px;" class="w-100">
+                                            <div id="boxAddTrangThaiChung" class="w-100 form-group"></div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" name="Luu" style="float:right" class="btn btn-md btn-primary">Thêm Sản
+                    Phẩm</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        CKEDITOR.editorConfig = function(config) {
+            config.language = 'es';
+            config.uiColor = '#F7B42C';
+            config.height = 300;
+            config.toolbarCanCollapse = true;
+        };
+    </script>
+</div>

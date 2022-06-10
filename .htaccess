@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteCond %{ENV:REDIRECT_STATUS} ^200
+RewriteRule ^ - [L]
+
+RewriteRule public - [L]
+
+
+RewriteRule  san-pham-chi-tiet\/(.*)\.html(.*) index.php?controller=index&action=productdetail&param=$1 [L]
+RewriteRule  danhmuc\/(.*)\.html(.*) index.php?controller=index&action=danhmuc&param=$1 [L]
+RewriteRule  lien-he\.html(.*) index.php?controller=index&action=pages&param=$1 [L]
+RewriteRule  (.*)\.html(.*) index.php?controller=index&action=pages&param=$1 [L]
+
+RewriteRule (.*) index.php [L]
+#
+#ErrorDocument 404 /index.php?ctr=index&action=loi404
+#
+  

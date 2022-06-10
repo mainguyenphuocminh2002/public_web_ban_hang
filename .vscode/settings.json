@@ -1,0 +1,7 @@
+{
+    "php-implementor.autoloads": {
+        "Controller": "Controller",
+        "Model":"Model",
+        "Module":"Module"
+    }
+}

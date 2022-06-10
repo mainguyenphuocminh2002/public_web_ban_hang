@@ -1,0 +1,345 @@
+<?php
+
+use Model\Common;
+use Model\FormCommon;
+use Controller\CheckLogin;
+use Module\Cart\Model\giohang;
+use Module\SanPham\Model\sanpham;
+
+new CheckLogin();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/animate.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/owl.theme.default.min.css">
+
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/aos.css">
+
+	<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/flaticon.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/icomoon.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/css/molicha.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/chitietcss/main.css">
+	<link rel="stylesheet" href="<?php echo URL; ?>public/molicha/chitietcss/util.css">
+	<link rel="icon" type="image/png" href="<?php echo URL ?>public/molicha/images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/lightbox2/css/lightbox.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/noui/nouislider.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL ?>public/molicha/vendor/slide100/slide100.css">
+	<title>Home</title>
+</head>
+
+<body class="animsition">
+	<!-- Title page -->
+	<section class="how-overlay2 bg-img1" style="background-image: url(images/bg-07.jpg);">
+		<div class="container">
+			<div class="txt-center p-t-160 p-b-165">
+				<h2 class="txt-l-101 cl0 txt-center p-b-14 respon1">
+					Checkout
+				</h2>
+
+				<span class="txt-m-201 cl0 flex-c-m flex-w">
+					<a href="<?php echo URL ?>" class="txt-m-201 cl0 hov-cl10 trans-04 m-r-6">
+						Home
+					</a>
+
+					<span>
+						/ Checkout
+					</span>
+				</span>
+			</div>
+		</div>
+	</section>
+
+	<!-- content page -->
+	<div class="bg0 p-t-95 p-b-50">
+		<div class="container">
+		<?php
+                $error = \Model\Error::GetError();
+                if ($error != null) {
+                    ?> 
+                    <div class="system-alert alert alert-<?php echo $error["Type"]; ?> alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo $error["Content"]; ?>
+                    </div>
+                    <?php
+                }
+                ?>
+		<form action="" method="POST">
+
+			<div class="row">
+				<div class="col-md-7 col-lg-8 p-b-50">
+					<div>
+						<h4 class="txt-m-124 cl3 p-b-28">
+							Billing details
+						</h4>
+
+						<div class="row p-b-50">
+							<div class="col-sm-6 p-b-23">
+								<div>
+									<div class="txt-s-101 cl6 p-b-10">
+										First Name <span class="cl12">*</span>
+									</div>
+
+									<input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text" name="first-name">
+								</div>
+							</div>
+
+							<div class="col-sm-6 p-b-23">
+								<div>
+									<div class="txt-s-101 cl6 p-b-10">
+										Last Name <span class="cl12">*</span>
+									</div>
+
+									<input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text" name="last-name">
+								</div>
+							</div>
+							<div class="col-sm-6 p-b-23">
+								<div>
+									<div class="txt-s-101 cl6 p-b-10">
+										Tỉnh Thành Phố <span class="cl12">*</span>
+									</div>
+									<?php
+									FormCommon::TinhThanh("DonHang[TinhThanh]", ["id" => "TinhThanhHtml", "value" => 32, "class" => "form-control"])->renderHTML();
+									?>
+									<!-- <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text" name="first-name"> -->
+								</div>
+							</div>
+
+							<div class="col-sm-6 p-b-23">
+								<div>
+									<div class="txt-s-101 cl6 p-b-10">
+										Quận Huyện <span class="cl12">*</span>
+									</div>
+									<?php
+										FormCommon::QuanHuyen(32, "DonHang[QuanHuyen]", ["id" => "QuanHuyenHtml", "value" => 33, "class" => "form-control"])->renderHTML();
+									?>
+									<!-- <input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text" name="last-name"> -->
+								</div>
+							</div>
+
+							<div class="col-12 p-b-23">
+								<div>
+									<div class="txt-s-101 cl6 p-b-10">
+										Địa Chỉ Chi Tiết <span class="cl12">*</span>
+									</div>
+
+									<input class="plh2 txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1 m-b-20" type="text" name="street" placeholder="Địa Chỉ Chi Tiết">
+								</div>
+							</div>
+
+							<div class="col-sm-6 p-b-23">
+								<div>
+									<div class="txt-s-101 cl6 p-b-10">
+										Phone <span class="cl12">*</span>
+									</div>
+
+									<input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text" name="phone">
+								</div>
+							</div>
+
+							<div class="col-sm-6 p-b-23">
+								<div>
+									<div class="txt-s-101 cl6 p-b-10">
+										Email Address <span class="cl12">*</span>
+									</div>
+
+									<input class="txt-s-120 cl3 size-a-21 bo-all-1 bocl15 p-rl-20 focus1" type="text" name="email">
+								</div>
+							</div>
+
+
+						</div>
+
+						<h4 class="txt-m-124 cl3 p-b-19">
+							Khác:
+						</h4>
+
+						<div>
+							<div class="txt-s-101 cl6 p-b-10">
+								Ghi Chú Thêm
+							</div>
+
+							<textarea class="plh2 txt-s-120 cl3 size-a-38 bo-all-1 bocl15 p-rl-20 p-tb-10 focus1" name="note" placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-5 col-lg-4 p-b-50">
+					<div class="how-bor4 p-t-35 p-b-40 p-rl-30 m-t-5">
+						<h4 class="txt-m-124 cl3 p-b-11">
+							Your order
+						</h4>
+
+						<div class="flex-w flex-sb-m txt-m-103 cl6 bo-b-1 bocl15 p-b-21 p-t-18">
+							<span>
+								Product
+							</span>
+
+							<span>
+								Total
+							</span>
+						</div>
+
+						<!--  -->
+						<div class="flex-w flex-sb-m txt-s-101 cl6 bo-b-1 bocl15 p-b-21 p-t-18">
+							<?php
+							$totalSanPham = 0;
+							$tongcong = 0;
+							foreach ($dataGioHang as $key => $value) {
+								# code...
+								$sp = new sanpham($value->product_id);
+								$totalSanPham = $sp->price * $value->number;
+								$tongcong += $totalSanPham;
+							?>
+							<input type="hidden" name="productId[]" value="<?php echo $sp->id?>">
+							<input type="hidden" name="giohangId[]" value="<?php echo $value->id?>">
+								<span style="text-transform: capitalize;">
+									<?php echo $sp->name; ?>
+
+									X
+									<?php
+									echo $value->number
+									?>
+								</span>
+
+								<span>
+									<?php
+									echo Common::PriceToVnd($totalSanPham);
+									?>VND
+								</span>
+						</div>
+
+
+					<?php
+							}
+					?>
+
+					<!--  -->
+					<div class="flex-w flex-m txt-m-103 p-tb-23">
+						<span class="size-w-61 cl6">
+							Total
+						</span>
+
+						<span class="size-w-62 cl10">
+							<input type="hidden" name="total" value="<?php echo $tongcong ?>">
+							<?php
+							echo Common::PriceToVnd($tongcong);
+							?>VND
+						</span>
+					</div>
+
+					</div>
+
+					<button type="submit" class="flex-c-m w-100 float-left txt-s-105 cl0 bg10 size-a-21 hov-btn2 trans-04 p-rl-10">
+						Đặt Hàng
+					</button>
+		</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top bg0-hov" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<span class="lnr lnr-chevron-up"></span>
+		</span>
+	</div>
+
+
+
+	<script src="<?php echo URL; ?>public/molicha/chitietjs/contact.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/chitietjs/main.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/chitietjs/map-custom.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/chitietjs/revo-custom.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/chitietjs/slick-custom.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/chitietjs/slide100-custom.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/jquery.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/bootstrap.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/jquery.waypoints.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/jquery.stellar.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/owl.carousel.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/jquery.magnific-popup.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/aos.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/jquery.animateNumber.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/jquery.timepicker.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/js/scrollax.min.js"></script>
+	<script src="<?php echo URL; ?>public/molicha/mine-config.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/bootstrap/js/popper.js"></script>
+	<script src="<?php echo URL ?>public/molicha/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/daterangepicker/moment.min.js"></script>
+	<script src="<?php echo URL ?>public/molicha/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/slick/slick.min.js"></script>
+	<script src="<?php echo URL ?>public/molicha/js/slick-custom.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/parallax100/parallax100.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/lightbox2/js/lightbox.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/isotope/isotope.pkgd.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/sweetalert/sweetalert.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/noui/nouislider.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/vendor/slide100/slide100.js"></script>
+	<script src="<?php echo URL ?>public/molicha/chitietjs/slide100-custom.js"></script>
+	<!--===============================================================================================-->
+	<script src="<?php echo URL ?>public/molicha/chitietjs/main.js"></script>
+	<script src="<?php echo URL ?>public/molicha/cart.js"></script>
+	
+</body>
+
+</html>

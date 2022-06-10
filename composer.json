@@ -1,0 +1,10 @@
+{
+    "require": {
+        "namdongvando/rpfbc": "^3.22",
+        "zaloplatform/zalo-php-sdk": "^2.0",
+        "keradus/psr4autoloader": "^2.0",
+        "facebook/graph-sdk": "^5.7",
+        "phpmailer/phpmailer": "^6.5"
+    }
+    
+}

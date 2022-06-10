@@ -1,0 +1,51 @@
+<?php
+$error = \Model\Error::GetError();
+if ($error != null) {
+?>
+  <div class="system-alert alert alert-<?php echo $error["Type"]; ?> alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <?php echo $error["Content"]; ?>
+  </div>
+<?php
+}
+?>
+<div class="loginbox">
+  <div class="login-right" style="display:block">
+    <div class="login-right-wrap">
+      <h1>Đăng Ký</h1>
+    </div>
+    <form action="" method="POST">
+      <div class="form-group">
+        <label class="form-control-label">Tên Đăng Nhập</label>
+        <input type="text" class="form-control" name="name" require>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Email</label>
+        <input type="email" class="form-control" name="email" require>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Mật Khẩu</label>
+        <div class="pass-group">
+          <input type="password" class="form-control pass-input" name="password" require>
+          <span class="fas fa-eye toggle-password"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-control-label">Nhập Lại Mật Khẩu</label>
+        <div class="pass-group">
+          <input type="password" class="form-control pass-input" name="rePassword" require>
+          <span class="fas fa-eye toggle-password"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="float-right w-100 text-right">
+            <a class="forgot-link" href="<?php echo URL ?>Login/QuenMatKhau">Quên mật khẩu?</a>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-lg btn-block btn-primary" type="submit" name="dangKy">Đăng Ký</button>
+    </form>
+  </div>
+</div>
+</div>

@@ -1,0 +1,32 @@
+<?php
+
+use Views\theme\molicha\block\block;
+
+?>
+<!DOCTYPE html>
+<html lang="vi">
+<?php
+block::head();
+?>
+
+<body>
+    <div class="" style="background-color:#000;height: 200px;">
+        <?php 
+            block::nav();
+        ?>
+    </div>
+    <?php
+    block::js();
+    ?>
+    <div class="container" style="padding-top:10% ;">
+        <?php 
+            include $_Content;
+        ?>
+    </div>
+    <?php
+
+    block::footer();
+    ?>
+</body>
+
+</html>

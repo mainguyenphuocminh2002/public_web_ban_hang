@@ -1,0 +1,93 @@
+					<?php
+
+					use Model\Common;
+					use Module\Cart\Model\giohang;
+					use Module\SanPham\Model\sanpham;
+
+					$tongcong = 0;
+					foreach ($dataGioHang as $item) {
+						# code...
+						$giohang = new giohang($item);
+					?>
+						<div data-cartid="<?php echo $giohang->id ?>" class="cartItem bo-b-1 bocl15">
+							<div class="size-h-2 js-pscroll m-r--15 p-r-15">
+								<!-- cart header item -->
+								<div class="flex-w flex-str m-b-25">
+									<div class="size-w-15 flex-w flex-t">
+										<?php
+										$sp = new sanpham($item->product_id);
+										$tongcong += $sp->price;
+										?>
+										<a href="<?php echo URL ?>sanphamchitiet/<?php echo $sp->name ?>.html" class=" wrap-pic-w bo-all-1 bocl12 size-w-16 hov3 trans-04 m-r-14">
+											<div class="img-responsive">
+												<img style="width: 100%;height: 100%;" src="<?php echo $sp->image ?>" alt="<?php echo $sp->name ?>">
+											</div>
+										</a>
+
+										<div class="size-w-17 flex-col-l">
+											<a hhref="<?php echo URL ?>sanphamchitiet/<?php echo $sp->name ?>.html" class="txt-s-108 cl3 hov-cl10 trans-04">
+												<?php echo $sp->name ?>
+											</a>
+
+											<span class="txt-s-101 cl9">
+												<?php echo Common::PriceToVnd($sp->price) ?>
+											</span>
+
+											<span id="quantity" class="txt-s-109 cl12">
+												X<?php
+													$giohang = new giohang($item);
+													echo $giohang->number;
+												?>
+											</span>
+										</div>
+									</div>
+
+									<div class="size-w-14 flex-b">
+										<button data-cartid="<?php echo $giohang->id ?>" data-deleteurlcart="<?php echo URL ?>Cart/api/XoaSanPham"  class="DeleteCart lh-10">
+											<img src="<?php echo URL ?>public/molicha/images/icons/icon-close.png" alt="CLOSE">
+										</button>
+									</div>
+								</div>
+
+								<!-- cart header item -->
+							</div>
+						</div>
+					<?php
+					}
+					?>
+					<div class="flex-w flex-sb-m p-b-31">
+						<span class="txt-m-103 cl3 p-r-20">
+							Tổng Tiền:
+						</span>
+
+						<span class="txt-m-111 cl10">
+							<?php echo Common::PriceToVnd($tongcong) ?>
+						</span>
+					</div>
+					<a href="<?php echo URL ?>Cart/Cart/post" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
+						Thanh Toán
+					</a>
+					<a href="<?php echo URL ?>Cart/cart" style="margin-top: 10px;" class="flex-c-m size-a-8 bg10 txt-s-105 cl13 hov-btn2 trans-04">
+						Giỏ Hàng
+					</a>
+					<script>
+						$('.DeleteCart').click(function(param) {
+							var linkUrl = $(this).data('deleteurlcart');
+							var btnKeyDelete = $(this).data('cartid');
+							$.ajax({
+								url: linkUrl,
+								data: {
+									id: btnKeyDelete
+								},
+								type: "POST"
+							}).done(function(res) {
+								$('.cartItem').each(function(item, key) {
+									CartKey = key.dataset.cartid;
+									if (CartKey === btnKeyDelete) {
+										key.remove();
+									}
+								})
+								$('#BoxCart').html(res);
+							})
+						})
+					</script>

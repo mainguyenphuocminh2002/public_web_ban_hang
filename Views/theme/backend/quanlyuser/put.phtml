@@ -1,0 +1,68 @@
+<ol class="breadcrumb" >
+    <li><a href="<?= URL ?>/QuanLyUser/index" >Home /</a></li>
+    <li><a href="<?= URL ?>/QuanLyUser/index" > Danh Sách User /</a></li>
+    <li> Sửa </li>
+</ol>
+<?php
+                    use Model\Users\FormUser;
+?>
+<div class="container-fluid" >
+    <div class="box box-primary" >
+        <div class="box-header" >
+            <h3 class="box-title" >Sửa Thành Viên</h3>
+            <div class="box-tools" >
+                <!--<a href="#" class="btn btn-success" ><i class="fa fa-plus" ></i></a>-->
+            </div>
+        </div>
+        <div class="box-body" >
+                        <?php
+                            $user = new \Model\User($userId);   
+                            if(isset($user)){
+                        ?>
+            <form action="" method="POST">
+                <div class="row" >
+                    <div class="col-md-6" >
+                        <?php
+                            FormUser::id($user->id)->renderHTML();
+                            FormUser::fullname($user->fullname)->renderHTML();    
+                            FormUser::email($user->email)->renderHTML();
+                            FormUser::active($user->active)->renderHTML();
+                        ?>
+                        <div class="form-group">
+                        <label>Quyền</label>
+                            <select style="overflow-y: hidden;" class="form-control" name="role" id="">
+                                <option value="" selected>Quyền</option>
+                                <?php
+                                foreach($allRoles as $role)
+                                {
+                                    if($RoleOfUser->role_name == $role->name){
+                                     ?>
+                                     <option <?php echo ($RoleOfUser->role_name = $role->name) ? 'selected' : '' ?>
+                                        value="<?php echo $role->name ?>"><?= $role->name ?></option>
+                                        <?php
+                                }else{?>
+                                <option 
+                                value="<?php echo $role->name ?>"><?= $role->name ?></option>
+                                <?php
+}}
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group" > 
+                            <button class="btn btn-default"  type="reset" >Làm Lại</button>
+                            <button class="btn btn-success" name="luu" >Lưu</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <?php
+                            }else{
+            ?>
+            <?php
+                            }
+            ?>
+        </div>
+    </div>
+
+
+</div>

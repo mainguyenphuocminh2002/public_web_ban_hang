@@ -1,0 +1,80 @@
+<ol class="breadcrumb">
+    <li><a href="<?= URL ?>GiaoDien/widget">Home /</a></li>
+    <li><a href="<?= URL ?>GiaoDien/widget">Danh Sách Widget /</a></li>
+    <li> Thêm </li>
+</ol>
+<?php
+
+use Model\Common;
+use Module\GiaoDien\Controller\widget;
+                    use Module\GiaoDien\Model\Widget\FormWidget;
+                    use Module\GiaoDien\Model\Widget\widgetService;
+
+$widget = new widgetService($dataWidget);
+?>
+<div class="container-fluid">
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Thêm Điều Hướng</h3>
+            <div class="box-tools">
+                <!--<a href="#" class="btn btn-success" ><i class="fa fa-plus" ></i></a>-->
+            </div>
+        </div>
+        <div class="box-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-4">
+                        <?php
+                        FormWidget::id($widget->id)->render();
+                        FormWidget::name($widget->name)->renderHTML();
+                        FormWidget::link($widget->link)->renderHTML();
+                        FormWidget::group_id($widget->group_id)->renderHTML();
+                        FormWidget::stt($widget->stt)->renderHTML();
+                        ?>
+                    </div>
+                    <div class="col-md-8">
+                        
+                        <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#thumb" class="nav-link" aria-controls="home" role="tab" data-toggle="tab">Thumbnail</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#des" class="nav-link" aria-controls="tab" role="tab" data-toggle="tab">Mô Tả Ngắn</a>
+                                </li>
+                            </ul>
+                        
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="thumb">
+                                <img src="<?= $widget->image ?>" width="200px" height="200px" id="widgetImg" alt="">
+                                    <input onchange="BrowseServer('widgetInput','widgetImg')" name="image" id="widgetInput" type="file" class="from-control">
+                                    
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="des">
+                                    <?php 
+                                        FormWidget::des(Common::HTMLdecode($widget->des))->renderHTML();
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <?php 
+
+                        ?>
+                    </div>
+                </div>
+                <button type="submit" name="Luu" style="float:right" class="btn btn-md btn-primary">Thêm Widget</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // CKEDITOR.editorConfig = function(config) {
+        //     config.language = 'es';
+        //     config.uiColor = '#F7B42C';
+        //     config.height = 300;
+        //     config.toolbarCanCollapse = true;
+        // };
+    </script>
+</div>

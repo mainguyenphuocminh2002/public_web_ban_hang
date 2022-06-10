@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<?php
+  use Views\theme\backend\block\block;
+  block::head();
+?>
+<body>
+
+  <!-- Main Wrapper -->
+
+    <!-- Header -->
+    <!-- /Header -->
+
+    <!-- Sidebar -->
+    <!-- /Sidebar -->
+
+    <!-- Page Wrapper -->
+    <!-- /Page Wrapper -->
+    
+    <?php #$errors = $data["Errors"]; ?>
+    <div class="main-wrapper login-body">
+      <div class="login-wrapper">
+        <div class="container">
+          <img class="img-fluid logo-dark mb-2" src="<?= URL ?>public/admin/img/logo.png" alt="Logo">
+        
+            <?php
+              include_once $_Content;
+            ?>
+        </div>
+      </div>
+    </div>
+  <!-- /Main Wrapper -->
+  
+  <?php block::js() ?>
+  
+</body>
+</html>

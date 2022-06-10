@@ -1,0 +1,291 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0830375ea9f6914d90a98790fe677b7c",
+    "packages": [
+        {
+            "name": "facebook/graph-sdk",
+            "version": "5.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-graph-sdk.git",
+                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2d8250638b33d73e7a87add65f47fabf91f8ad9b",
+                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                },
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/facebook/php-graph-sdk/issues",
+                "source": "https://github.com/facebook/php-graph-sdk/tree/5.7.0"
+            },
+            "abandoned": true,
+            "time": "2018-12-11T22:56:31+00:00"
+        },
+        {
+            "name": "keradus/psr4autoloader",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/keradus/Psr4Autoloader.git",
+                "reference": "99352ede8d098feee8d2d2949b2438523f56afce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/keradus/Psr4Autoloader/zipball/99352ede8d098feee8d2d2949b2438523f56afce",
+                "reference": "99352ede8d098feee8d2d2949b2438523f56afce",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Keradus\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PSR-4 Autoloader implementation",
+            "homepage": "https://github.com/keradus/Psr4Autoloader",
+            "support": {
+                "issues": "https://github.com/keradus/Psr4Autoloader/issues",
+                "source": "https://github.com/keradus/Psr4Autoloader/tree/master"
+            },
+            "time": "2014-09-02T08:18:34+00:00"
+        },
+        {
+            "name": "namdongvando/rpfbc",
+            "version": "3.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/namdongvando/RPFBC.git",
+                "reference": "f5a4326e7974f0dc87018921525fa7065ab857b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/namdongvando/RPFBC/zipball/f5a4326e7974f0dc87018921525fa7065ab857b9",
+                "reference": "f5a4326e7974f0dc87018921525fa7065ab857b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PFBC\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "email": "namdong92@gmail.com",
+                    "role": "Owner"
+                },
+                {
+                    "email": "namdong92@gmail.com",
+                    "role": "Committer"
+                }
+            ],
+            "description": "Create Form",
+            "homepage": "https://nguyenvando.net/rpfbc",
+            "keywords": [
+                "form",
+                "html",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/namdongvando/RPFBC/issues",
+                "source": "https://github.com/namdongvando/RPFBC/tree/3.22"
+            },
+            "time": "2021-06-15T07:55:13+00:00"
+        },
+        {
+            "name": "phpmailer/phpmailer",
+            "version": "v6.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "baeb7cde6b60b1286912690ab0693c7789a31e71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/baeb7cde6b60b1286912690ab0693c7789a31e71",
+                "reference": "baeb7cde6b60b1286912690ab0693c7789a31e71",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-filter": "*",
+                "ext-hash": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "doctrine/annotations": "^1.2",
+                "php-parallel-lint/php-console-highlighter": "^0.5.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3",
+                "phpcompatibility/php-compatibility": "^9.3.5",
+                "roave/security-advisories": "dev-latest",
+                "squizlabs/php_codesniffer": "^3.6.0",
+                "yoast/phpunit-polyfills": "^1.0.0"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "psr/log": "For optional PSR-3 debug logging",
+                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-only"
+            ],
+            "authors": [
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "support": {
+                "issues": "https://github.com/PHPMailer/PHPMailer/issues",
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.5.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Synchro",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-11-25T16:34:11+00:00"
+        },
+        {
+            "name": "zaloplatform/zalo-php-sdk",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zaloplatform/zalo-php-sdk.git",
+                "reference": "bc5d27e2e4208bd06c93abcd9bbb098275c858b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zaloplatform/zalo-php-sdk/zipball/bc5d27e2e4208bd06c93abcd9bbb098275c858b0",
+                "reference": "bc5d27e2e4208bd06c93abcd9bbb098275c858b0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.2.*"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Zalo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Zalo Platform"
+            ],
+            "authors": [
+                {
+                    "name": "zaloplatform",
+                    "email": "zaloplatform@gmail.com"
+                }
+            ],
+            "description": "sdk for zalo developers",
+            "keywords": [
+                "composer",
+                "sdk",
+                "zalo",
+                "zalosdk"
+            ],
+            "support": {
+                "issues": "https://github.com/zaloplatform/zalo-php-sdk/issues",
+                "source": "https://github.com/zaloplatform/zalo-php-sdk/tree/2.0.3"
+            },
+            "time": "2020-12-22T17:12:33+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.1.0"
+}

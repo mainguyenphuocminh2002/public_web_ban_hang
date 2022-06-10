@@ -1,0 +1,87 @@
+<?php
+if (isset($categoryData) && $categoryData) {
+?>
+    <table data-delete="<?php echo $dataKey ?>" class="categoryData table">
+        <tr>
+            <td>
+                <div class="col-md-6 text-center">Tên Loại Chi Tiết</div>
+            </td>
+            <td>
+
+                <div class="col-md-6 text-center">Tên Loại Chung</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="border-0">
+                <div class="form-group d-flex justify-content-between">
+                    <input type="text" class="form-control" required id="inputAddCategoryChiTiet" />
+                </div>
+            </td>
+            <td class="border-0">
+                <div class="form-group">
+                    <select id="categoryParentData" class="form-control">
+                        <?php
+                        foreach ($categoryData as $key => $val) {
+                        ?>
+                            <option value="<?= $key; ?>"><?= $val; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </td>
+            <td class="border-0">
+
+                <div class="form-group">
+                    <button type="button" data-url="<?php echo URL ?>SanPham/api/GetDataCreateLoai" id="btnCategoryChiTiet" style="margin-left:10px;" class="btn btn-success">Thêm</button>
+                    <button data-delete="<?php echo $dataKey?>" type="button" class="btnDeleteLoai btn-danger btn ">Xoá Loại</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+<?php
+} else {
+?>
+    <div class="system-alert alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        Không Có Loại Chung Vui Lòng Tạo
+    </div>
+<?php
+}
+?>
+<script>
+    $('.btnDeleteLoai').click(function(event) {
+        var btnKeyDelete = $(this).data('delete');
+        var categorykey = '';
+        $('.categoryData').each(function(item, key) {
+            categoryKey = key.dataset.delete;
+            if (categoryKey === btnKeyDelete) {
+                key.remove();
+            }
+        })
+    })
+    var categoryParentData = '';
+    $('#categoryParentData').change(function(event) {
+        categoryParentData = event.target.value;
+    })
+    
+    
+    $('#btnCategoryChiTiet').click(function() {
+        var data = $('#inputAddCategoryChiTiet').val();
+        var linkUrl = $(this).data('url');
+        if (data) {
+            $.ajax({
+                url: linkUrl,
+                data: {
+                    data: data,
+                    categoryParentData: categoryParentData,
+                },
+                type: "post"
+            }).done(function(res) {
+                $('#boxAddCategoryChiTiet').html(res);
+            })
+        } else {
+            return false;
+        }
+    })
+</script>

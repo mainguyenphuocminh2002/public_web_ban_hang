@@ -1,0 +1,62 @@
+<?php
+if (isset($trangthaiData) && $trangthaiData) {
+?>
+    <table data-delete="<?php echo $dataKey ?>" class="table trangThaiData">
+        <tr>
+            <td>
+                <div class="col-md-6 text-center">Tên Trạng Thái Chi Tiết</div>
+
+            </td>
+            <td>
+                <div class="col-md-6 text-center">Tên Trạng Thái Chung</div>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="border-0">
+                <div class="form-group">
+                    <input class="form-control" name="sanpham[trangthaichitiet][]" type="type">
+                </div>
+            </td>
+            <td class="border-0">
+                <div class="form-group">
+                    <select name="sanpham[trangThaiParentChiTiet][]" class="form-control">
+                        <?php
+                        foreach ($trangthaiData as $key => $val) {
+                        ?>
+                            <option value="<?= $key; ?>"><?= $val; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+            </td>
+            <td class="border-0">
+                <div class="form-group">
+                    <button data-delete="<?php echo $dataKey ?>" type="button" class="btnDeleteTrangThai btn-danger btn ">Xoá Trạng Thái</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+<?php
+} else {
+?>
+    <div class="system-alert alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        Không Có Trạng Thái Chung Vui Lòng Tạo
+    </div>
+<?php
+}
+?>
+<script>
+    $('.btnDeleteTrangThai').click(function(event) {
+        var btnKeyDelete = $(this).data('delete');
+        var trangthaikey = '';
+        $('.trangThaiData').each(function(item, key) {
+            trangthaikey = key.dataset.delete;
+            if (trangthaikey === btnKeyDelete) {
+                key.remove();
+            }
+        })
+    })
+</script>

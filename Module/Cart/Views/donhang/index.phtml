@@ -1,0 +1,141 @@
+<!-- Page Header -->
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <a style="font-size: 2rem;font-weight: bold;padding:0;margin:0;" href="<?php
+
+                                                                                    use Module\Cart\Controller\api;
+                                                                                    use Model\Common;
+                                                                                    use Module\Cart\Model\donhang;
+                                                                                    use Module\Cart\Model\trangthaidonhang;
+
+                                                                                    echo URL ?>Cart/donhang" class="page-title">Quản Lý Đơn Hàng</a>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item active">Danh Sách Đơn Hàng</li>
+            </ul>
+        </div>
+        <div class="col-auto">
+            <?php
+            echo donhang::btnThem();
+            ?>
+        </div>
+    </div>
+</div>
+<!-- /Page Header -->
+
+<!-- Search Filter -->
+
+<!-- /Search Filter -->
+<div class="row">
+    <div class="col-sm-12 ">
+        <form action="" method="POST">
+            <div style="padding:0;" class="align-items-center col-sm-12 d-flex justify-content-between mb-1">
+                <input class="form-control" name="action" value="/index" type="hidden">
+                <input class="search-bar col-sm-10" style=" position: relative;
+                                border-radius: 0.2rem;
+                                width:90%;
+                                height:40px;
+                                transition: .3s ease-in;
+                                padding-left:1rem;
+                                color:#000;
+                            " placeholder="Tìm Kiếm..." type="text" style="font-size: 3rem;
+                                position: absolute;
+                            " name="keyword" value="<?php echo isset($_POST["keyword"]) ? \Model\Common::TextInput($_POST["keyword"]) : "" ?>">
+                <!-- <input class="form-control" name="controller" value="QuanLyQuyen" type="hidden"> -->
+                <button style="float:right;font-size: 1.2rem;" class="col-auto btn btn-primary d-flex align-items-center" id="search">
+                    TÌm Kiếm
+                    <i style="cursor: pointer;margin-left:0.8rem" class="fa fa-search"></i>
+                </button>
+
+            </div>
+            <script>
+                $(document).ready(function() {
+                    $('#search').click(function() {
+                        $('.search-bar').show();
+                        $('#search').hide();
+                    })
+
+                })
+            </script>
+        </form>
+        <?php
+        \Model\FormCommon::Select(
+            "",
+            "",
+            [10, 20, 50, 100],
+            [
+                "style" => "max-width:200px;",
+                "class" => "form-control",
+                "value" => $pageNumber,
+                "onchange" => "SoDongHienThi(this.value)",
+            ]
+        )->render();
+        ?>
+        <div style="margin-top:1.6rem" class="card card-table">
+            <div class="card-body">
+                <div class="table-responsive" id="product_list">
+                    <table class="table table-center table-hover datatable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Khách Hàng</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Email</th>
+                                <th>Ngày Tạo Đơn</th>
+                                <th>Tổng</th>
+                                <th>Trạng Thái</th>
+                                <th class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (isset($dataDonHang) && !empty($dataDonHang)) {
+                                foreach ($dataDonHang as $item) {
+                                    $trangthaidonhang = new trangthaidonhang($item->trang_thai_id);
+                                        $dh = new donhang($item);
+                            ?>
+                                        <tr>
+                                            <td><?= $dh->first_name ?> <?php echo $dh->last_name ?></td>
+                                            <td><?= $dh->phone ?></td>
+                                            <td><?= $dh->email ?></td>
+                                            <td><?= $dh->create_at ?></td>
+                                            <td><?= Common::PriceToVnd($dh->total) ?> VND</td>
+                                            <?php
+                                            $ttdonhang = new trangthaidonhang($dh->trang_thai_id);
+                                            ?>
+                                            <td data-dhid="<?php echo $dh->id ?>" class="statusName"><?= $ttdonhang->name ?></td>
+                                            <td class="text-right">
+                                                <div class="dropdown dropdown-action" style=" display: inline-block; ">
+                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <?php
+                                                        foreach ($status as $itemStatus) {
+                                                        ?>
+                                                            <?php
+                                                            if ($itemStatus->id == $dh->trang_thai_id) continue;
+                                                            ?>
+                                                            <a data-dhid="<?php echo $dh->id ?>" class="dropdown-item status btnStatus" data-id="<?= $itemStatus->id ?>"><i class="far fa-edit mr-2"></i>
+                                                                <?= $itemStatus->name ?>
+                                                            </a>
+                                                            <?php 
+                                                                 }
+                                                            ?>
+                                            </td>
+                                        </tr>
+                        <?php
+                                                }
+                                            }
+                        ?>
+                        </tbody>
+                    </table>
+                    <div class="box-footer">
+                        <div style="padding:0.6rem 0;font-size: 1.4rem;" class="d-flex align-items-center justify-content-center col-sm-12">
+                            <?php
+                            $linkPhanTrang = URL . "Cart/donhang/?keyword={$params["keyword"]}&indexPage=[i]&pageNumber={$pageNumber}";
+                            echo \Model\Common::PhanTrang($total, $indexPage, $pageNumber, $linkPhanTrang);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

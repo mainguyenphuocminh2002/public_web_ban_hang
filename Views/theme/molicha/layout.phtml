@@ -1,0 +1,78 @@
+<?php
+
+use Views\theme\molicha\block\block1;
+
+?>
+<!DOCTYPE html>
+<html lang="vi">
+<?php
+block1::head();
+?>
+<body>
+    <!-- Header -->
+	<?php 
+        block1::header()
+    ?>
+
+	<!-- Slider -->
+	<?php 
+    block1::slider()
+    ?>
+
+	<!-- Product -->
+	<?php 
+    block1::product()
+    ?>
+	
+
+	<!-- Flavors -->
+	<?php 
+    block1::flavor()
+    ?>
+	
+
+
+
+	<!-- Why chose -->
+	
+	<?php 
+    block1::whyChoose()
+    ?>
+
+	<!-- Blog -->
+	<?php 
+    block1::blog()
+    ?>
+	
+
+
+	<!-- Footer -->
+	<?php 
+    block1::footer()
+    ?>
+	
+
+
+	<!-- Back to top -->
+	<?php 
+    block1::backBtn()
+    ?>
+	
+
+<?php
+
+    // block::nav();
+    // block::slider();
+    // block::widget();
+    // block::aboutUs();
+    // block::menu();
+    // block::chiNhanh();
+    // block::footer();
+    // block::js();
+?>
+</div>
+<?php 
+block1::js();
+?>
+</body>
+</html>

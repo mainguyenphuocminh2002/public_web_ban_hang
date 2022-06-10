@@ -1,0 +1,83 @@
+<ol class="breadcrumb">
+    <li><a href="<?= URL ?>GiaoDien/pages">Home /</a></li>
+    <li><a href="<?= URL ?>GiaoDien/pages">Danh Sách Trang /</a></li>
+    <li> Thêm </li>
+</ol>
+<?php
+
+use Model\Common;
+use Module\GiaoDien\Model\Pages\FormPages;
+use Module\GiaoDien\Model\Pages\pagesService;
+
+$pages = new pagesService();
+?>
+<div class="container-fluid">
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Thêm Trang</h3>
+            <div class="box-tools">
+                <!--<a href="#" class="btn btn-success" ><i class="fa fa-plus" ></i></a>-->
+            </div>
+        </div>
+        <div class="box-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-5">
+                        <?php
+                        FormPages::id(Common::uuid())->render();
+                        FormPages::name()->renderHTML();
+                        FormPages::title()->renderHTML();
+                        FormPages::alias()->renderHTML();
+                        FormPages::des()->renderHTML();
+                        ?>
+                    </div>
+                    <div class="col-md-7">
+                        <div role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#imagesTrang"  aria-controls="imagesTrang" class="nav-link" role="tab" data-toggle="tab">Hình Ảnh</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#content"  aria-controls="content" class="nav-link" role="tab" data-toggle="tab">Content</a>
+                                </li>
+                                <li role="presentation" class="">
+                                    <a href="#keyword"  aria-controls="keyword" class="nav-link" role="tab" data-toggle="tab">SEO</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane" id="content">
+                                    <?php
+                                    FormPages::content()->renderHTML();
+                                    ?>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="keyword">
+                                    <?php
+                                    FormPages::key_word()->renderHTML();
+                                    ?>
+                                </div>
+                                
+                                <div role="tabpanel" class="tab-pane active" id="imagesTrang">
+                                <img src="public/admin/img/no-image.jpg" width="200px" height="200px" id="pagesImg" alt="">
+                                    <input onchange="BrowseServer('pagesInput','pagesImg')" name="image" id="pagesInput" type="file" class="from-control">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" name="Luu" style="float:right" class="btn btn-md btn-primary">Thêm Trang</button>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        CKEDITOR.editorConfig = function(config) {
+            config.language = 'es';
+            config.uiColor = '#F7B42C';
+            config.height = 300;
+            config.toolbarCanCollapse = true;
+        };
+    </script>
+</div>

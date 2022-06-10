@@ -1,0 +1,49 @@
+<ol class="breadcrumb">
+    <li><a href="<?= URL ?>Cart/donhang">Home /</a></li>
+    <li><a href="<?= URL ?>Cart/donhang">Danh Sách Đơn Hàng/</a></li>
+    <li> Thêm </li>
+</ol>
+<?php
+
+                    use Model\Common;
+
+?>
+<div class="container-fluid">
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Thêm Trạng Thái Đơn Hàng</h3>
+            <div class="box-tools">
+                <!--<a href="#" class="btn btn-success" ><i class="fa fa-plus" ></i></a>-->
+            </div>
+        </div>
+        <div class="box-body">
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" value="<?php echo Common::uuid(); ?>" name="trangthaidonhang[id]" class="form-control">
+                        <div class="form-group">
+                            <label for="">Tên Trạng Thái Đơn Hàng</label>
+                            <input type="text" name="trangthaidonhang[name]" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mô Tả Trạng Thái Đơn Hàng</label>
+                            <textarea name="trangthaidonhang[des]" id="" cols="30" class="form-control" rows="10"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Thêm Trạng Thái" name="Luu" style="color: #fff;" class="form-control float-right w-25 btn btn-primary">
+                        </div>
+
+                    </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        CKEDITOR.editorConfig = function(config) {
+            config.language = 'es';
+            config.uiColor = '#F7B42C';
+            config.height = 300;
+            config.toolbarCanCollapse = true;
+        };
+    </script>
+</div>

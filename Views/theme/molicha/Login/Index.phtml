@@ -1,0 +1,24 @@
+<?php
+                $error = \Model\Error::GetError();
+                if ($error != null) {
+                    ?> 
+                    <div class="system-alert alert alert-<?php echo $error["Type"]; ?> alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo $error["Content"]; ?>
+                    </div>
+                    <?php
+                }
+                ?>
+<form action="" method="POST" class="login-email">
+			<p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+			<div class="input-group">
+				<input type="text" placeholder="User Name" name="name" required>
+			</div>
+			<div class="input-group">
+				<input type="password" placeholder="Password" name="password" required>
+			</div>
+			<div class="input-group">
+				<button name="submit" class="btn">Login</button>
+			</div>
+			<p class="login-register-text">Don't have an account? <a href="<?= URL .'register' ?>">Register Here</a>.</p>
+		</form>

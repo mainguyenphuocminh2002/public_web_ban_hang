@@ -1,0 +1,80 @@
+<ol class="breadcrumb">
+    <li><a href="<?= URL ?>QuanLyUser/index">Home /</a></li>
+    <li><a href="<?= URL ?>QuanLyUser/index"> Danh Sách Thành Viên /</a></li>
+    <li> Thêm </li>
+</ol>
+<?php
+
+use Model\User;
+use Model\Users\FormUser;
+
+// $user = new User();
+?>
+<div class="container-fluid">
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">Thêm Thành Viên</h3>
+            <div class="box-tools">
+                <!--<a href="#" class="btn btn-success" ><i class="fa fa-plus" ></i></a>-->
+            </div>
+        </div>
+        <div class="box-body">
+            <form action="" method="POST">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <?php
+                            FormUser::fullname()->renderHTML();
+                            FormUser::username()->renderHTML();
+                            FormUser::email()->renderHTML();
+                            ?>
+                            <!-- <label>Thành Viên</label>
+                        <input type="text"  class="form-control col-sm-9" name='username'> -->
+                        </div>
+                        <div class="form-group">
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control col-sm-9" name="users[password]" id="password">                                
+                                <button type="button" onclick="generatePassword(8)"
+                                    class="col-sm-3 btn btn-primary">Random</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <label>Quyền</label>
+                            <select style="overflow-y: hidden;" class="form-control" name="role" id="">
+                                <option value="" selected>Quyền</option>
+                                <?php
+                                
+                                foreach($allRole as $role)
+                                     {
+                                     ?>
+                                        <option value="<?php echo $role->name ?>"><?= $role->name ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-default" type="reset">Làm Lại</button>
+                            <button class="btn btn-success" name="Luu">Lưu</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    var el_down = document.getElementById("password");
+
+    var generatePassword = function(length) {
+        var password = ''
+        var alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*_-+=";
+        for (let i = 0; i < length; i++) {
+            password += alpha.charAt(
+                Math.floor(Math.random() * alpha.length)
+            );
+        }
+        el_down.value = password;
+    };
+    </script>
+</div>

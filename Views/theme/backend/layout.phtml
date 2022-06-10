@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<?php
+  use Views\theme\backend\block\block;
+  block::head();
+?>
+<body>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+
+    <!-- Header -->
+    <?php block::header() ?>
+    <!-- /Header -->
+
+    <!-- Sidebar -->
+    <?php block::sidebar()?>
+    <!-- /Sidebar -->
+
+    <!-- Page Wrapper -->
+    <div 
+    style="
+      position: relative;
+      top: 8%;
+      left:8%;
+    "
+    class="container">
+    <?php
+                $error = \Model\Error::GetError();
+                if ($error != null) {
+                    ?> 
+                    <div class="system-alert alert alert-<?php echo $error["Type"]; ?> alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo $error["Content"]; ?>
+                    </div>
+                    <?php
+                }
+                ?>
+    <?php 
+      include_once $_Content;
+    ?>
+    </div>
+    <!-- /Page Wrapper -->
+
+  </div>
+  <!-- /Main Wrapper -->
+
+  <?php block::js() ?>
+
+</body>
+
+</html>

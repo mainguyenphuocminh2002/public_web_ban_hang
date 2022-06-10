@@ -1,0 +1,43 @@
+    <?php 
+        if(isset($topingData) && !empty($topingData)){
+    ?>
+    <table data-delete = "<?php echo $topingData->id ?>" class="table TopingData">
+        <tr>
+            <td class="border-0">
+                <div class="form-group">
+                    <input class="form-control" value="<?php echo $topingData->name ?>" type="type">
+                    <input class="form-control" name="sanpham[topingData][]" value="<?php echo $topingData->id ?>" type="hidden">
+                    <input class="form-control" name="sanpham[topingName][]" value="<?php echo $topingData->name ?>" type="hidden">
+                </div>
+            </td>
+            <td class="border-0">
+                <div class="form-group" >
+                    <button data-url ="<?php echo URL ?>SanPham/api/DeleteToping"  type="button" data-delete = "<?php echo $topingData->id ?>"  class="btnDeleteToping btn-danger btn">Xoá Toping</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <?php 
+        }
+    ?>
+    <script>
+       $('.btnDeleteToping').click(function(event){
+        var btnKeyDelete = $(this).data('delete');
+        var topingkey='';
+        $('.TopingData').each(function(item,key){
+            topingKey = key.dataset.delete; 
+            if(topingKey === btnKeyDelete){
+                key.remove();
+            }
+        })
+        var linkUrl = $(this).data('url');
+        
+        $.ajax({
+            url:linkUrl,
+            data:{id:btnKeyDelete},
+            type:"post"
+        }).done(function(){
+
+        })
+})  
+    </script>

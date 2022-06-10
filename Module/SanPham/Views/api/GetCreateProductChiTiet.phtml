@@ -1,0 +1,86 @@
+<?php
+if (isset($categoryDetailData) && $categoryDetailData) {
+?>
+    <div class="form-group">
+        <select id="productCategoryDetail" name="sanpham[categoryParentChiTiet][]" class="form-control">
+            <?php
+            foreach ($categoryDetailData as $key => $val) {
+            ?>
+                <option data-productcategory="<?php echo $key ?>" value="<?= $key; ?>"><?= $val; ?></option>
+            <?php
+            }
+            ?>
+        </select>
+
+    </div>
+
+<?php
+} else {
+?>
+    <div class="system-alert alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        Không Có Loại Chung Vui Lòng Tạo
+    </div>
+<?php
+}
+?>
+<script>
+    // $('.btnDeleteLoai').click(function(event) {
+    //     var btnKeyDelete = $(this).data('delete');
+    //     var categorykey = '';
+    //     $('.categoryData').each(function(item, key) {
+    //         categoryKey = key.dataset.delete;
+    //         if (categoryKey === btnKeyDelete) {
+    //             key.remove();
+    //         }
+    //     })
+    // })
+
+    var check = [];
+    $('#productCategoryDetail').change(function(event) {
+        var productCategoryData = event.target.children;
+        var DeleteValue ='';
+        if (productCategoryData) {
+            var productCategoryValue = event.target.value;
+            var htmlData = '';
+            for (var j = 0; j < productCategoryData.length; j++) {
+                if (productCategoryValue === "" || productCategoryValue == 0) {
+                    return false;
+                }
+                if (productCategoryValue === productCategoryData[j].value) {
+                    productName = productCategoryData[j].innerText;
+                    DeleteValue =productCategoryData[j].value;
+                }
+            }
+            if (check.includes(productName)) {
+                return false
+            } else {
+                htmlData = `
+                <div style="padding:0 15px;" data-deletevalue = ${DeleteValue} class="productDetailDelete form-group d-flex align-items-center">
+                    <div class="w-75">
+                        <input type="hidden" style="margin:10px;color:#fff;" value=${productCategoryValue} name="sanpham[productCategoryId][]" class="form-control w-25 btn btn-primary" required />
+                        <input type="text" style="margin:10px;margin-left:5px;color:#fff;" value=${productName} class="form-control btn btn-primary" required />
+                    </div>
+                    <button type="button" data-deletevalue = ${DeleteValue} class="btnProductDetailDelete btn btn-danger">X</button>
+                </div>
+                `
+                check.push(DeleteValue);
+                $("#cardItemCategory").append(htmlData);
+            }
+        }
+    $('.btnProductDetailDelete').click(function(event){
+        var keybtn = $(this).data('deletevalue');
+        $('.productDetailDelete').each(function(key,item){
+                if(keybtn == item.dataset.deletevalue){
+                    item.remove();
+                    for(itemCheck of check){
+                        if(itemCheck == item.dataset.deletevalue){
+                            check.splice(check.indexOf(itemCheck), 1)
+                        }
+                    }
+                    
+                }
+            })
+        })
+    })
+</script>
