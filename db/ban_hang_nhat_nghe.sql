@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 11:58 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.26
+-- Generation Time: Jun 18, 2022 at 11:10 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cuoikhoa`
+-- Database: `ban_hang_nhat_nghe`
 --
 
 -- --------------------------------------------------------
@@ -40,9 +40,9 @@ CREATE TABLE `branch` (
 --
 
 INSERT INTO `branch` (`id`, `name`, `address`, `image`, `group_id`) VALUES
-('4895c1b1-174f-446b-ac19-d0bc712d4e00', 'Hố Nai', '123/456 Hố Nai', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1190662.jpg', 'MainMenu'),
-('6c7f934b-866c-496a-94d3-acfa3388515c', 'Phạm Văn Thuận', '131/123 BH DN', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1188254_800x450.jpg', 'MainMenu'),
-('9bba4287-282a-4492-a78e-a2aeaff5a6ea', 'Võ Thị Sáu', '542/123 Võ Thị Sáu', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1188254.jpg', 'MainMenu'),
+('4895c1b1-174f-446b-ac19-d0bc712d4e00', 'Hố Nai', '123/456 Hố Nai', 'public/admin/userfiles/files/banner4.webp', 'MainMenu'),
+('6c7f934b-866c-496a-94d3-acfa3388515c', 'Phạm Văn Thuận', '131/123 BH DN', 'public/admin/userfiles/files/banner4.webp', 'MainMenu'),
+('9bba4287-282a-4492-a78e-a2aeaff5a6ea', 'Võ Thị Sáu', '542/123 Võ Thị Sáu', 'public/admin/userfiles/files/banner4.webp', 'MainMenu'),
 ('e72823ec-6e57-446f-9620-4071d1bdb00a', 'Biên Hoà', '24/12 Biên Hoà', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-658987.jpg', 'MainMenu');
 
 -- --------------------------------------------------------
@@ -87,8 +87,6 @@ INSERT INTO `category_detail` (`id`, `category_id`, `name`, `des`) VALUES
 ('15ff92e1-dff2-4722-b8ad-276383189eb5', '20289144-54ab-4ea6-bb60-cafaea335a8f', 'Sữa Tươi', ''),
 ('1923965b-6c8e-49bd-af4f-82fb52b574fd', '2', 'Trà', ''),
 ('35f766ee-4d75-48a5-9643-272012fade4f', '2', 'Trà Sữa', '0'),
-('b564c182-256e-48ab-bba6-0f976fc77ed4', '2', 'Check', NULL),
-('c34b0602-8179-4455-b9bd-439991a4b7b2', '2', 'Test', NULL),
 ('cc1622a3-df20-447c-aecc-a24cd9974cf9', '20289144-54ab-4ea6-bb60-cafaea335a8f', 'Capuchino', '');
 
 -- --------------------------------------------------------
@@ -157,13 +155,6 @@ CREATE TABLE `gio_hang` (
   `create_at` date NOT NULL,
   `trang_thai` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `gio_hang`
---
-
-INSERT INTO `gio_hang` (`id`, `user_id`, `product_id`, `number`, `create_at`, `trang_thai`) VALUES
-('c4853de1-1856-40ca-8a3b-4d33ae19be0f', '1', '769c21ec-8f27-414b-8da2-116b47348efa', 4, '2022-01-27', 0);
 
 -- --------------------------------------------------------
 
@@ -997,7 +988,7 @@ INSERT INTO `menu` (`id`, `name`, `link`, `parent_id`, `icon`, `group_id`, `stt`
 CREATE TABLE `pages` (
   `id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `images` text COLLATE utf8_unicode_ci NOT NULL,
+  `image` text COLLATE utf8_unicode_ci NOT NULL,
   `content` longtext COLLATE utf8_unicode_ci NOT NULL,
   `key_word` longtext COLLATE utf8_unicode_ci NOT NULL,
   `title` text COLLATE utf8_unicode_ci NOT NULL,
@@ -1009,10 +1000,11 @@ CREATE TABLE `pages` (
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `name`, `images`, `content`, `key_word`, `title`, `alias`, `des`) VALUES
-('43c3ac05-81b8-4b4d-98e3-6f8ae37fea90', 'Sản Phẩm', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1188254.jpg', '&lt;p&gt;&amp;aacute;dasd&lt;/p&gt;', '&lt;p&gt;&amp;aacute;dadsa&lt;/p&gt;', 'ádas', 'sanpham', 'ádasd'),
-('756509fe-3beb-4372-b6bb-4f0a257413de', 'Liên Hệ', '/Molicha/public/admin/userfiles/files/123.jpg', '<p><strong>3.&nbsp;Gửi email</strong><strong>&nbsp;theo&nbsp;</strong><a href=\"https://help.shopee.vn/vn/s/contactusform\" target=\"_blank\"><strong>hướng dẫn</strong></a><br />\r\n<br />\r\n<strong>4. Gọi điện thoại:&nbsp;</strong><strong>19001221</strong><strong>&nbsp;</strong>(cước ph&iacute; l&agrave; 1.000đ / ph&uacute;t)<br />\r\n<br />\r\n<strong>Lưu &yacute;:</strong>&nbsp;Thời gian nhận được kết quả xử l&yacute;<br />\r\n- Ngay lập tức: d&agrave;nh cho những y&ecirc;u cầu về tư vấn v&agrave; giải đ&aacute;p th&ocirc;ng tin<br />\r\n- Từ 1-2 ng&agrave;y l&agrave;m việc: d&agrave;nh cho những y&ecirc;u cầu hỗ trợ cần c&aacute;c bộ phận li&ecirc;n quan xử l&yacute;<br />\r\n- Từ 3-5 ng&agrave;y l&agrave;m việc: d&agrave;nh cho những y&ecirc;u cầu khiếu nại</p>\r\n', '<p>asdasd,&aacute;dsadas</p>\r\n', 'Liên Hệ', 'lien-he', 'ádasdasd'),
-('a8767eb2-8966-49b6-94d8-9b5f7606b6f2', 'Về Chúng Tôi Short', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1188254.jpg', '&lt;p&gt;&lt;strong&gt;3.&amp;nbsp;Gửi email&lt;/strong&gt;&lt;strong&gt;&amp;nbsp;theo&amp;nbsp;&lt;/strong&gt;&lt;a href=\\&quot;https://help.shopee.vn/vn/s/contactusform\\&quot; target=\\&quot;_blank\\&quot;&gt;&lt;strong&gt;hướng dẫn&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt; &lt;br /&gt; &lt;strong&gt;4. Gọi điện thoại:&amp;nbsp;&lt;/strong&gt;&lt;strong&gt;19001221&lt;/strong&gt;&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;(cước ph&amp;iacute; l&amp;agrave; 1.000đ / ph&amp;uacute;t)&lt;br /&gt; &lt;br /&gt; &lt;strong&gt;Lưu &amp;yacute;:&lt;/strong&gt;&amp;nbsp;Thời gian nhận được kết quả xử l&amp;yacute;&lt;br /&gt; - Ngay lập tức: d&amp;agrave;nh cho những y&amp;ecirc;u cầu về tư vấn v&amp;agrave; giải đ&amp;aacute;p th&amp;ocirc;ng tin&lt;br /&gt; - Từ 1-2 ng&amp;agrave;y l&amp;agrave;m việc: d&amp;agrave;nh cho những y&amp;ecirc;u cầu hỗ trợ cần c&amp;aacute;c bộ phận li&amp;ecirc;n quan xử l&amp;yacute;&lt;br /&gt; - Từ 3-5 ng&amp;agrave;y l&amp;agrave;m việc: d&amp;agrave;nh cho những y&amp;ecirc;u cầu khiếu nại&lt;/p&gt;', '&lt;p&gt;asdasd,&amp;aacute;dasd&lt;/p&gt;', 'Về Chúng Tôi', 'short-aboutUs', 'Ngắn'),
+INSERT INTO `pages` (`id`, `name`, `image`, `content`, `key_word`, `title`, `alias`, `des`) VALUES
+('43c3ac05-81b8-4b4d-98e3-6f8ae37fea90', 'Sản Phẩm', '/Molicha/public/admin/userfiles/files/123.jpg', '&lt;p&gt;&amp;aacute;dasd&lt;/p&gt;', '&lt;p&gt;&amp;aacute;dadsa&lt;/p&gt;', 'ádas', 'sanpham', 'ádasd'),
+('5c9fe14b-e2e7-4c79-98a2-3c55b00122bf', 'New Drink', '/public/admin/userfiles/admin/banner5.webp', '', '', 'New Drink', 'new-drink', 'new-drink'),
+('756509fe-3beb-4372-b6bb-4f0a257413de', 'Liên Hệ', '', '&lt;p&gt;&lt;strong&gt;3.&amp;nbsp;Gửi email&lt;/strong&gt;&lt;strong&gt;&amp;nbsp;theo&amp;nbsp;&lt;/strong&gt;&lt;a href=\\&quot;\\\\\\&quot; target=\\&quot;\\\\&amp;quot;\\\\\\\\&amp;quot;\\\\\\\\\\\\\\\\&amp;quot;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&amp;quot;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&amp;quot;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&amp;quot;_blank\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&amp;quot;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&amp;quot;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\&amp;quot;\\\\\\\\\\\\\\\\&amp;quot;\\\\\\\\&amp;quot;\\\\&amp;quot;\\&quot;&gt;&lt;strong&gt;hướng dẫn&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt; &lt;br /&gt; &lt;strong&gt;4. Gọi điện thoại:&amp;nbsp;&lt;/strong&gt;&lt;strong&gt;19001221&lt;/strong&gt;&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;(cước ph&amp;iacute; l&amp;agrave; 1.000đ / ph&amp;uacute;t)&lt;br /&gt; &lt;br /&gt; &lt;strong&gt;Lưu &amp;yacute;:&lt;/strong&gt;&amp;nbsp;Thời gian nhận được kết quả xử l&amp;yacute;&lt;br /&gt; - Ngay lập tức: d&amp;agrave;nh cho những y&amp;ecirc;u cầu về tư vấn v&amp;agrave; giải đ&amp;aacute;p th&amp;ocirc;ng tin&lt;br /&gt; - Từ 1-2 ng&amp;agrave;y l&amp;agrave;m việc: d&amp;agrave;nh cho những y&amp;ecirc;u cầu hỗ trợ cần c&amp;aacute;c bộ phận li&amp;ecirc;n quan xử l&amp;yacute;&lt;br /&gt; - Từ 3-5 ng&amp;agrave;y l&amp;agrave;m việc: d&amp;agrave;nh cho những y&amp;ecirc;u cầu khiếu nại&lt;/p&gt;', '&lt;p&gt;asdasd,&amp;aacute;dsadas&lt;/p&gt;', 'Liên Hệ', 'lien-he', 'ádasdasd'),
+('a8767eb2-8966-49b6-94d8-9b5f7606b6f2', 'Về Chúng Tôi Short', '/public/admin/userfiles/admin/banner4.webp', '&lt;p&gt;&lt;strong&gt;3.&amp;nbsp;Gửi email&lt;/strong&gt;&lt;strong&gt;&amp;nbsp;theo&amp;nbsp;&lt;/strong&gt;&lt;a href=\\&quot;\\\\\\&quot; target=\\&quot;\\\\&amp;quot;_blank\\\\&amp;quot;\\&quot;&gt;&lt;strong&gt;hướng dẫn&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt; &lt;br /&gt; &lt;strong&gt;4. Gọi điện thoại:&amp;nbsp;&lt;/strong&gt;&lt;strong&gt;19001221&lt;/strong&gt;&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;(cước ph&amp;iacute; l&amp;agrave; 1.000đ / ph&amp;uacute;t)&lt;br /&gt; &lt;br /&gt; &lt;strong&gt;Lưu &amp;yacute;:&lt;/strong&gt;&amp;nbsp;Thời gian nhận được kết quả xử l&amp;yacute;&lt;br /&gt; - Ngay lập tức: d&amp;agrave;nh cho những y&amp;ecirc;u cầu về tư vấn v&amp;agrave; giải đ&amp;aacute;p th&amp;ocirc;ng tin&lt;br /&gt; - Từ 1-2 ng&amp;agrave;y l&amp;agrave;m việc: d&amp;agrave;nh cho những y&amp;ecirc;u cầu hỗ trợ cần c&amp;aacute;c bộ phận li&amp;ecirc;n quan xử l&amp;yacute;&lt;br /&gt; - Từ 3-5 ng&amp;agrave;y l&amp;agrave;m việc: d&amp;agrave;nh cho những y&amp;ecirc;u cầu khiếu nại&lt;/p&gt;', '&lt;p&gt;asdasd,&amp;aacute;dasd&lt;/p&gt;', 'Về Chúng Tôi', 'short-aboutUs', 'Ngắn'),
 ('f05b8dfb-f6cb-4524-ae00-d1603f3a1d2d', 'asdhas', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1190662.jpg', '<p>asdas</p>\r\n', '<p>asdasd</p>\r\n', 'aasdas', 'danhmuc', 'asdsa'),
 ('f559ec48-431c-4347-ac44-7f729aa8b8bc', 'Về Chúng Tôi', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1188254_800x450.jpg', '&lt;h1&gt;Giới thi&amp;ecirc;̣u v&amp;ecirc;̀ shop Thời Trang Ciao.&lt;/h1&gt; &lt;h2&gt;Đ&amp;ocirc;i lời giới thi&amp;ecirc;̣u v&amp;ecirc;̀ shop:&lt;/h2&gt; &lt;p&gt;Shop Thời Trang Ciao chúng t&amp;ocirc;i kh&amp;ocirc;ng đơn thu&amp;acirc;̀n là cái đẹp thời trang, chúng t&amp;ocirc;i khao khát ki&amp;ecirc;́n tạo những giá trị xã h&amp;ocirc;̣i nh&amp;acirc;n văn, trở thành m&amp;ocirc;̣t l&amp;ocirc;́i s&amp;ocirc;́ng đ&amp;ecirc;̉ đ&amp;ocirc;̀ng hành cùng phụ nữ tr&amp;ecirc;n hành trình th&amp;acirc;́u cảm vẻ đẹp của chính mình.&lt;/p&gt; &lt;p&gt;Shop Thời Trang Ciao là k&amp;ecirc;nh mua sắm online uy tín hàng đ&amp;acirc;̀u, cùng với đ&amp;ocirc;̣i ngũ nh&amp;acirc;n vi&amp;ecirc;n chuy&amp;ecirc;n nghi&amp;ecirc;̣p, chúng t&amp;ocirc;i cam k&amp;ecirc;́t đem những sản ph&amp;acirc;̉m t&amp;ocirc;́t nh&amp;acirc;́t, với giá cả phải chăng, uy tín và ch&amp;acirc;́t lượng với dịch vụ t&amp;ocirc;́t nh&amp;acirc;́t đ&amp;ecirc;́n với mọi người.&lt;/p&gt; &lt;h2&gt;Mục ti&amp;ecirc;u của chúng t&amp;ocirc;i.&lt;/h2&gt; &lt;p&gt;Shop thời trang Ciao &amp;ndash; Ch&amp;acirc;́t Lượng &amp;ndash; Uy Tín &amp;ndash; Chuy&amp;ecirc;n nghi&amp;ecirc;̣p&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Ti&amp;ecirc;́p tục trở thành shop bán lẻ hàng đ&amp;acirc;̀u.&lt;/li&gt; &lt;li&gt;Mở r&amp;ocirc;̣ng phạm vi bán hàng ra toàn qu&amp;ocirc;́c.&lt;/li&gt; &lt;li&gt;Mang đ&amp;ecirc;́n cho khách hàng sự y&amp;ecirc;n t&amp;acirc;m và hài lòng khi mua sắm tại nhà.&lt;/li&gt; &lt;li&gt;Kh&amp;ocirc;ng ngừng t&amp;igrave;m kiếm v&amp;agrave; cập nhật c&amp;aacute;c mẫu quần &amp;aacute;o, c&amp;aacute;c hot trend tr&amp;ecirc;n thị trường để đ&amp;aacute;p ứng nhu cầu của kh&amp;aacute;ch h&amp;agrave;ng.&lt;/li&gt; &lt;li&gt;Nơi cung c&amp;acirc;́p th&amp;ocirc;ng tin và tư v&amp;acirc;́n sản ph&amp;acirc;̉m t&amp;ocirc;́t nh&amp;acirc;́t cho khách hàng.&lt;/li&gt; &lt;li&gt;Đ&amp;ocirc;́i tác ti&amp;ecirc;̀m năng và uy tín của các nhà cung c&amp;acirc;́p.&lt;/li&gt; &lt;/ul&gt; &lt;h2&gt;Cơ sở v&amp;acirc;̣t ch&amp;acirc;́t.&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;Đội ngũ nh&amp;acirc;n sự chuy&amp;ecirc;n nghiệp, tận t&amp;igrave;nh v&amp;agrave; trung thực&lt;/li&gt; &lt;li&gt;Bộ phận Tư vấn v&amp;agrave; chăm s&amp;oacute;c kh&amp;aacute;ch h&amp;agrave;ng.&lt;/li&gt; &lt;li&gt;Bộ phận Nhận diện thương hiệu.&lt;/li&gt; &lt;li&gt;Bộ phận Video v&amp;agrave; h&amp;igrave;nh ảnh&lt;/li&gt; &lt;li&gt;Bộ phận Giao nhận&lt;/li&gt; &lt;li&gt;C&amp;aacute;c bộ phận kh&amp;aacute;c: H&amp;agrave;nh ch&amp;iacute;nh, Kế to&amp;aacute;n &amp;hellip;&lt;/li&gt; &lt;li&gt;Cơ sở vật chất&amp;nbsp; đầy đủ v&amp;agrave; hiện đại&lt;/li&gt; &lt;li&gt;Kho lưu giữ h&amp;agrave;ng h&amp;oacute;a, đặt ngay tại trung t&amp;acirc;m th&amp;agrave;nh phố.&lt;/li&gt; &lt;li&gt;Xe vận chuyển h&amp;agrave;ng h&amp;oacute;a v&amp;agrave; sắp xếp h&amp;agrave;ng h&amp;oacute;a&lt;/li&gt; &lt;/ul&gt; &lt;h2&gt;Hình thức bán hàng.&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;Mọi sản phẩm đều được b&amp;aacute;n qua k&amp;ecirc;nh Online.&lt;/li&gt; &lt;li&gt;Đặt h&amp;agrave;ng trực tuyến tr&amp;ecirc;n&amp;nbsp;&lt;a href=\\&quot;https://www.facebook.com/VayXinh.ReDep.ThoiTrangCiao/\\&quot; rel=\\&quot;noreferrer noopener\\&quot; target=\\&quot;_blank\\&quot;&gt;Fanpage Facebook của Shop chúng t&amp;ocirc;i&lt;/a&gt;.&lt;/li&gt; &lt;li&gt;Đưa sản phẩm l&amp;ecirc;n website:&amp;nbsp;&lt;a href=\\&quot;https://thoitrangciao.com/\\&quot;&gt;Trang chủ &amp;ndash; thoitrangciao.com&lt;/a&gt;.&lt;/li&gt; &lt;li&gt;H&amp;agrave;ng th&amp;aacute;ng ph&amp;aacute;t h&amp;agrave;nh 500 m&amp;atilde; giảm gi&amp;aacute; tặng k&amp;egrave;m khi kh&amp;aacute;ch h&amp;agrave;ng mua h&amp;agrave;ng tại shop.&lt;/li&gt; &lt;li&gt;Hai th&amp;aacute;ng ph&amp;aacute;t h&amp;agrave;nh 100 qu&amp;agrave; tặng d&amp;agrave;nh cho kh&amp;aacute;ch h&amp;agrave;ng th&amp;acirc;n thiết.&lt;/li&gt; &lt;/ul&gt; &lt;h2&gt;Sản ph&amp;acirc;̉m kinh doanh.&lt;/h2&gt; &lt;p&gt;Ch&amp;uacute;ng t&amp;ocirc;i chuy&amp;ecirc;n kinh doanh thời trang nữ dành cho mọi lứa tu&amp;ocirc;̉i, sản phẩm chủ yếu l&amp;agrave;&amp;nbsp;&lt;a href=\\&quot;https://thoitrangciao.com/danh-muc/ao/\\&quot; rel=\\&quot;noreferrer noopener\\&quot; target=\\&quot;_blank\\&quot;&gt;&amp;Aacute;o Thời Trang Nữ&lt;/a&gt;,&amp;nbsp;&lt;a href=\\&quot;https://thoitrangciao.com/danh-muc/chan-vay/\\&quot; rel=\\&quot;noreferrer noopener\\&quot; target=\\&quot;_blank\\&quot;&gt;Ch&amp;acirc;n V&amp;aacute;y Nữ&lt;/a&gt;,&amp;nbsp;&lt;a href=\\&quot;https://thoitrangciao.com/danh-muc/dam/\\&quot; rel=\\&quot;noreferrer noopener\\&quot; target=\\&quot;_blank\\&quot;&gt;Đầm Nữ Đẹp&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;Những sản phẩm tại Thời Trang Ciao được ch&amp;iacute;nh chủ Shop t&amp;igrave;m kiếm tuyển chọn mẫu m&amp;atilde; đa dạng phong ph&amp;uacute; theo xu hướng thời trang &amp;ldquo;HOT&amp;rdquo; nhất tr&amp;ecirc;n thị trường.&amp;nbsp;&lt;/p&gt; &lt;p&gt;C&amp;aacute;c sản phẩm của ch&amp;uacute;ng t&amp;ocirc;i được lựa chọn vải v&amp;agrave; đặt may tại Việt Nam với ti&amp;ecirc;u ch&amp;iacute; &amp;ldquo;Kh&amp;ocirc;ng qua trung gian &amp;ndash; Gi&amp;aacute; cả hợp l&amp;yacute; &amp;ndash; Chất lượng đảm bảo&amp;rdquo;&amp;nbsp;&lt;/p&gt; &lt;h2&gt;Hành trình phát tri&amp;ecirc;̉n Thời Trang Ciao.&lt;/h2&gt; &lt;p&gt;Chúng t&amp;ocirc;i ra đời tr&amp;ecirc;n phương di&amp;ecirc;̣n lắng nghe mong ước của những người phụ nữ, dựa tr&amp;ecirc;n thực t&amp;ecirc;́ nhi&amp;ecirc;̀u người mong mu&amp;ocirc;́n được mặc đẹp hơn, khoác l&amp;ecirc;n người những b&amp;ocirc;̣ cánh làm t&amp;ocirc;n l&amp;ecirc;n vẻ đẹp của bản th&amp;acirc;n với m&amp;ocirc;̣t mức giá phù hợp nh&amp;acirc;́t.&lt;/p&gt; &lt;p&gt;T&amp;acirc;́t cả những sản ph&amp;acirc;̉m của chúng t&amp;ocirc;i được nh&amp;acirc;̣p v&amp;ecirc;̀ tr&amp;ecirc;n ti&amp;ecirc;u chí b&amp;ecirc;̀n rẻ đẹp, c&amp;ocirc;́ gắng t&amp;ocirc;́t nh&amp;acirc;́t đ&amp;ecirc;̉ làm hài lòng mọi người, tr&amp;ecirc;n phương di&amp;ecirc;̣n g&amp;acirc;̀n gũi hơn nhưng v&amp;acirc;̃n giữ nguy&amp;ecirc;n vẻ thanh lịch, t&amp;ocirc;́i giản và sang trọng.&lt;/p&gt; &lt;p&gt;Chi&amp;ecirc;́n lực phát tri&amp;ecirc;̉n của thời trang Ciao chúng t&amp;ocirc;i là lu&amp;ocirc;n lu&amp;ocirc;n đ&amp;ocirc;̉i mới, c&amp;ocirc;́ gắng tìm tòi những cách thức phục vụ t&amp;ocirc;́t nh&amp;acirc;́t cho nhu c&amp;acirc;̀u làm đẹp chính đáng của mọi người.&lt;/p&gt; &lt;h2&gt;Chúng t&amp;ocirc;i cam k&amp;ecirc;́t.&lt;/h2&gt; &lt;ul&gt; &lt;li&gt;Giá cả phù hợp, tư v&amp;acirc;́n nhi&amp;ecirc;̣t tình.&lt;/li&gt; &lt;li&gt;Giao hàng nhanh chóng, mi&amp;ecirc;̃n phí tr&amp;ecirc;n toàn qu&amp;ocirc;́c.&lt;/li&gt; &lt;li&gt;H&amp;acirc;̣u mãi chu đáo.&lt;/li&gt; &lt;li&gt;Nhi&amp;ecirc;̀u chương trình khuy&amp;ecirc;́n mãi h&amp;acirc;́p d&amp;acirc;̃n.&lt;/li&gt; &lt;/ul&gt;', '&lt;p&gt;asdasd,&amp;aacute;dsdasd&lt;/p&gt;', '...', 'about-us', 'ádasdas');
 
@@ -1054,10 +1046,10 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `image`, `price`, `code`, `des`, `sale_off`, `create_at`, `is_show`, `view`, `key_word`) VALUES
-('0ef847cd-90cc-46f2-a574-7637b22c7d1a', 'alo alo', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-658987.jpg', '90.000', '23131646', '&lt;p&gt;asdasd&lt;/p&gt;', '85.000', '2022-01-27 00:00:00', 0, 5000, 'asdasd,asdasdad'),
-('769c21ec-8f27-414b-8da2-116b47348efa', 'Capuchino', '/Molicha/public/admin/userfiles/files/123.jpg', '20.000', 'TS_CY12312312', '&lt;p&gt;asdasdasd,asdasdasdasd&lt;/p&gt;', '20.000', '2022-01-27 00:00:00', 0, 10003, 'asdasd,asdasd'),
-('a5ef7ef0-f8d8-49bd-8cd1-060a7b67fd21', 'Trà Sữa 1', '/Molicha/public/admin/userfiles/files/123.jpg', '25.000', 'adasd', '&lt;p&gt;&amp;aacute;dasd&lt;/p&gt;', '20.000', '2022-01-27 00:00:00', 0, 15000, 'adasd,ádsa'),
-('c8c45f91-8040-487d-a793-99df690c7861', 'Trà Sữa Nóng', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-1190662.jpg', '15.000', 'TS_CY', '&lt;p&gt;asdasd&lt;/p&gt;', '20.000', '2022-01-27 00:00:00', 0, 12000, 'asdasd');
+('0ef847cd-90cc-46f2-a574-7637b22c7d1a', 'Trà Sữa Hoàng Kim', '/public/admin/userfiles/admin/tra-sua-socola.png', '90.000', '23131646', '&lt;p&gt;asdasd&lt;/p&gt;', '85.000', '2022-06-07 00:00:00', 0, 5, 'asdasd,asdasdad'),
+('769c21ec-8f27-414b-8da2-116b47348efa', 'Capuchino', '/public/admin/userfiles/admin/9532fa02417e46a09e84957c42bbf116.jpg', '20.000', 'TS_CY12312312', '&lt;p&gt;asdasdasd,asdasdasdasd&lt;/p&gt;', '20.000', '2022-06-07 00:00:00', 0, 10, 'asdasd,asdasd'),
+('a5ef7ef0-f8d8-49bd-8cd1-060a7b67fd21', 'Trà Sữa Đào', '/public/admin/userfiles/admin/tra-sua-socola.png', '25.000', 'adasd', '&lt;p&gt;&amp;aacute;dasd&lt;/p&gt;', '20.000', '2022-06-07 00:00:00', 0, 15, 'adasd,ádsa'),
+('c8c45f91-8040-487d-a793-99df690c7861', 'Trà Sữa Nóng', '/public/admin/userfiles/admin/463cc84d265d3ef305f25190ab3df82b-pha-tra-sua-socola-s-copy.png', '15.000', 'TS_CY', '&lt;p&gt;asdasd&lt;/p&gt;', '20.000', '2022-06-07 00:00:00', 0, 12, 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -1077,15 +1069,13 @@ CREATE TABLE `product_category_detail` (
 
 INSERT INTO `product_category_detail` (`id`, `category_id`, `product_id`) VALUES
 ('1cf01dc0-f51e-4554-baeb-ba99aba5d545', '1923965b-6c8e-49bd-af4f-82fb52b574fd', '769c21ec-8f27-414b-8da2-116b47348efa'),
-('2a795231-d714-44e7-9787-e733d11be21e', 'c34b0602-8179-4455-b9bd-439991a4b7b2', 'c8c45f91-8040-487d-a793-99df690c7861'),
 ('407dbe43-439c-4a28-bdb8-5c44b1199b67', '35f766ee-4d75-48a5-9643-272012fade4f', 'a5ef7ef0-f8d8-49bd-8cd1-060a7b67fd21'),
 ('63c602e8-77be-4094-857b-f915705ac8f1', '1923965b-6c8e-49bd-af4f-82fb52b574fd', 'c8c45f91-8040-487d-a793-99df690c7861'),
 ('6da878d2-f68f-4036-8163-006e5e12a1c6', '15ff92e1-dff2-4722-b8ad-276383189eb5', 'a5ef7ef0-f8d8-49bd-8cd1-060a7b67fd21'),
 ('7ac38246-8251-4e9b-81c8-0bb4e69baa62', '15ff92e1-dff2-4722-b8ad-276383189eb5', 'c8c45f91-8040-487d-a793-99df690c7861'),
 ('ba3e0d7b-3117-4d54-a070-0d6be9cbd3dd', '1923965b-6c8e-49bd-af4f-82fb52b574fd', 'a5ef7ef0-f8d8-49bd-8cd1-060a7b67fd21'),
 ('c59efae2-da0a-4096-89a9-54ba0a9ec616', 'cc1622a3-df20-447c-aecc-a24cd9974cf9', '769c21ec-8f27-414b-8da2-116b47348efa'),
-('d7b40f5d-a268-48d1-bef9-f1c2715ddf94', '35f766ee-4d75-48a5-9643-272012fade4f', 'c8c45f91-8040-487d-a793-99df690c7861'),
-('f94e6c7d-b3ce-41db-9d9e-37d4554a18e3', 'b564c182-256e-48ab-bba6-0f976fc77ed4', 'a5ef7ef0-f8d8-49bd-8cd1-060a7b67fd21');
+('d7b40f5d-a268-48d1-bef9-f1c2715ddf94', '35f766ee-4d75-48a5-9643-272012fade4f', 'c8c45f91-8040-487d-a793-99df690c7861');
 
 -- --------------------------------------------------------
 
@@ -1127,7 +1117,9 @@ CREATE TABLE `slider` (
 --
 
 INSERT INTO `slider` (`id`, `name`, `content`, `image`, `group_id`, `is_public`) VALUES
-('47614e7f-2def-4306-be36-54e69adeff1b', 'Main Slider', '&lt;p&gt;djsgfasjgfjsbfjsdfaf&lt;/p&gt;', '/Molicha/public/admin/userfiles/files/stretched-1920-1080-658987.jpg', 'HomeSlide', 1);
+('47614e7f-2def-4306-be36-54e69adeff1b', 'Main Slider', '&lt;p&gt;djsgfasjgfjsbfjsdfaf&lt;/p&gt;', 'public/admin/userfiles/files/banner1.jpg', 'HomeSlide', 1),
+('9f9d1a06-eeb9-4937-b949-76b9f996ef30', 'Slider 4', '', 'public/admin/userfiles/admin/banner2.jpg', 'HomeSlide', 1),
+('aa2723d6-71f7-43cf-861e-06b7623222b0', 'Slider3', '', '/public/admin/userfiles/admin/banner3.jpg', 'HomeSlide', 1);
 
 -- --------------------------------------------------------
 
